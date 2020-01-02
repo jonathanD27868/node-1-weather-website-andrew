@@ -52,21 +52,21 @@ app.use(express.static(publicDirectoryPath));
 app.get('', (req, res) => {
     res.render('index', {
         title: 'Weather',
-        name: 'Andrew Mead'
+        name: 'Jonathan D'
     });
 });
 
 app.get('/about', (req, res) => {
     res.render('about',{
         title: 'About Me',
-        name: 'Andrew Mead'
+        name: 'Jonathan D'
     });
 });
 
 app.get('/help', (req, res) => {
     res.render('help', {
         title: 'Help',
-        name: 'John Doe'
+        name: 'Jonathan D'
     });
 });
 
@@ -113,7 +113,7 @@ app.get('/help/*', (req, res) => {
     res.render('404', {
         errorText: "Help article not found.",
         title: "404",
-        name: 'John Doe'
+        name: 'Jonathan D'
     });
 });
 
@@ -121,7 +121,7 @@ app.get('*', (req, res) => {
     res.render('404', {
         errorText: "Page not found.",
         title: "404",
-        name: 'John Doe'
+        name: 'Jonathan D'
     });
 });
 
