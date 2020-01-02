@@ -1,24 +1,34 @@
 /*
-Heroku
+git hub initialisation:
 
-dans package json: on à remplacé
-    "start": "nodemon src/app.js -e js,hbs",
-par
-    "start": "node src/app.js",
+Après avoir créé les clés ssh (id_rsa.pub et id_rsa) et le repository node-1-weather-website-andrew dans github:
 
-// Ajout de variable pour le port d'écoute heroku et pour l'utililsation locale 3000:
-    const port = process.env.PORT || 3000;
+1- Ajouter sa clé ssh (id_rsa.pub) dans les settings pour transférer les fichiers
+2- git remote add origin https://github.com/jonathanD27868/node-1-weather-website-andrew.git => set origin vers le repository désiré
+2-bis- git remote set-url origin https://github.com/jonathanD27868/weather-website-andrew.git => set-url permet de modifier l'url du repository désiré
+3- git push -u origin master => enregistre le flux de donné vers le repository (-u option) et envoie le projet sur github
 
-et on adapte app.listen:
-    app.listen(port , () => {
-        console.log("Server is up on port " + port));
-    });
 
-    ensuite il faut adapter le lien de la méthode fetch dans public/js/app.js pour qu'il fonctionne en locale et en production avec heroku:
-    on passe de:
-        `http://localhost:3000/weather?address=${location}`
-    à:
-        `/weather?address=${location}`
+Heroku initialisation:
+
+1- heroku login => connection vers siteweb pour authentification (press space key)
+2- heroku keys:add => ajoute les clés ssh pour transfert sécurisé
+3- heroku create d27868-node-1-weather-andrew => crée le projet avec le nom "d27868-node-1-weather-andrew" qui servira dans l'url (choisir un nom unique POUR TOUS LES USERS!!! je commence mes sites par d27868-...)
+4- git push heroku master => transfère de github à heroku
+5- heroku logs => affiche le log, utile en cas de problème
+
+
+
+modif project to git, github & Heroku
+
+Après avoir modifié notre projet:
+
+1- git status => affiche l'état des fichiers modifiés
+2- git add . => ajoute tous les fichiers modifiés
+3- git commit -m "description des modifs" => enregistre les modifs!
+4- git push (= git push origin master) => envoie le tout vers github
+5- git remote => affiche les connexions distantes (ici heroku et origin)
+6- git push heroku master => transfère de github à heroku
 
 
 */
