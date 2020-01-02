@@ -1,5 +1,25 @@
 /*
-Search form:
+Heroku
+
+dans package json: on à remplacé
+    "start": "nodemon src/app.js -e js,hbs",
+par
+    "start": "node src/app.js",
+
+// Ajout de variable pour le port d'écoute heroku et pour l'utililsation locale 3000:
+    const port = process.env.PORT || 3000;
+
+et on adapte app.listen:
+    app.listen(port , () => {
+        console.log("Server is up on port " + port));
+    });
+
+    ensuite il faut adapter le lien de la méthode fetch dans public/js/app.js pour qu'il fonctionne en locale et en production avec heroku:
+    on passe de:
+        `http://localhost:3000/weather?address=${location}`
+    à:
+        `/weather?address=${location}`
+
 
 */
 
@@ -12,6 +32,9 @@ const geocode = require('./utils/geocode');
 const forecast = require('./utils/forecast');
 
 const app = express();
+
+// port d'écoute heroku:
+const port = process.env.PORT || 3000;
 
 // Define paths for express config
 const publicDirectoryPath = path.join(__dirname, "../public");
@@ -102,6 +125,6 @@ app.get('*', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-    console.log("Server is up on port 3000");
+app.listen(port , () => {
+    console.log("Server is up on port " + port);
 });
